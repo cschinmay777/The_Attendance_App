@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "522430136256",
+    "project_id": "the-attendance-app-ab009",
+    "storage_bucket": "the-attendance-app-ab009.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522430136256:android:5e5535cff2465784515225",
+        "android_client_info": {
+          "package_name": "com.example.the_attendance_book_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522430136256-d0qp5r84gfkk7djc0u5hmt3pfbdddhqg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.the_attendance_book_1",
+            "certificate_hash": "cbd7c88f405a42a3d0c08fc8cd1fd9966482756a"
+          }
+        },
+        {
+          "client_id": "522430136256-bausv603gub82bqt31vmcd3qv3flif8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfwzg97Fdshw7vtG3MhE2W03pnPCmbKdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522430136256-bausv603gub82bqt31vmcd3qv3flif8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
