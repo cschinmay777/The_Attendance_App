@@ -1,5 +1,13 @@
+// import 'dart:html';
+
+import 'dart:ui';
+import 'package:the_attendance_book_1/screens/userdetails.dart';
+
+import 'package:the_attendance_book_1/screens/userdetails.dart';
 import 'package:flutter/material.dart';
 import 'package:the_attendance_book_1/screens/WelcomePage.dart';
+
+import '../teacherdetails.dart';
 
 class AttendanceReportPage extends StatefulWidget {
   const AttendanceReportPage({Key? key}) : super(key: key);
@@ -10,96 +18,143 @@ class AttendanceReportPage extends StatefulWidget {
 
 class _AttendanceReportPageState extends State<AttendanceReportPage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  String Percentage(int? a, int? b) {
+    double per = (b! / a!) * 100;
+    return per.toStringAsFixed(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFF5F5F5),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Align(
-            alignment: AlignmentDirectional(0, 0),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                      //icon and name of app
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return WelcomePage();
-                            }));
-                          },
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(80),
-                              child: Image.network(
-                                'https://cdn-icons-png.flaticon.com/512/25/25694.png',
-                                width: 30,
-                                height: 30,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(25, 0, 10, 0),
-                          child: Text(
-                            'The Attendance Book',
-                            style: TextStyle(
-                              fontFamily: 'Work Sans',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ]),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(60),
-                            child: Image.network(
-                              'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                          child: Text(
-                            'Hi Sakshi!!!!!',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text("Attendance Report"),
+        centerTitle: true,
+        backgroundColor: Colors.indigo,
+      ),
+      body: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+        child: Column(
+          // mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              child: Text(
+                "ATTENDANCE REPORT",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-          ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Table(
+                  border: TableBorder.all(),
+                  children: [
+                    HeadRow([
+                      'Subject',
+                      'Total Lectures',
+                      'Attended Lectures',
+                      'Ratio'
+                    ]),
+                    BuildRow([
+                      'DSA',
+                      '${TeacherDetails.DSA}',
+                      '${UserDetails.DSA}',
+                      '${Percentage(TeacherDetails.DSA, UserDetails.DSA)}'
+                    ]),
+                    BuildRow([
+                      'COC',
+                      '${TeacherDetails.COC}',
+                      '${UserDetails.COC}',
+                      '${Percentage(TeacherDetails.COC, UserDetails.COC)}'
+                    ]),
+                    BuildRow([
+                      'DSAL',
+                      '${TeacherDetails.DSAL}',
+                      '${UserDetails.DSAL}',
+                      '${Percentage(TeacherDetails.DSAL, UserDetails.DSAL)}'
+                    ]),
+                    BuildRow([
+                      'M3',
+                      '${TeacherDetails.M3}',
+                      '${UserDetails.M3}',
+                      '${Percentage(TeacherDetails.M3, UserDetails.M3)}'
+                    ]),
+                    BuildRow([
+                      'M3_Tut',
+                      '${TeacherDetails.M3_tut}',
+                      '${UserDetails.M3_tut}',
+                      '${Percentage(TeacherDetails.M3_tut, UserDetails.M3_tut)}'
+                    ]),
+                    BuildRow([
+                      'MP',
+                      '${TeacherDetails.MP}',
+                      '${UserDetails.MP}',
+                      '${Percentage(TeacherDetails.MP, UserDetails.MP)}'
+                    ]),
+                    BuildRow([
+                      'MPL',
+                      '${TeacherDetails.MPL}',
+                      '${UserDetails.MPL}',
+                      '${Percentage(TeacherDetails.MPL, UserDetails.MPL)}'
+                    ]),
+                    BuildRow([
+                      'PBL',
+                      '${TeacherDetails.PBL}',
+                      '${UserDetails.PBL}',
+                      '${Percentage(TeacherDetails.PBL, UserDetails.PBL)}'
+                    ]),
+                    BuildRow([
+                      'PPL',
+                      '${TeacherDetails.PPL}',
+                      '${UserDetails.PPL}',
+                      '${Percentage(TeacherDetails.PPL, UserDetails.PPL)}'
+                    ]),
+                    BuildRow([
+                      'SE',
+                      '${TeacherDetails.SE}',
+                      '${UserDetails.SE}',
+                      '${Percentage(TeacherDetails.SE, UserDetails.SE)}'
+                    ]),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
+
+  TableRow HeadRow(List<String> cells) => TableRow(
+      children: cells
+          .map((cell) => Padding(
+                padding: const EdgeInsets.only(
+                    left: 12.0, right: 8.0, top: 8, bottom: 8),
+                child: Center(
+                  child: Text(
+                    cell,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                ),
+              ))
+          .toList());
+
+  TableRow BuildRow(List<String> cells) => TableRow(
+      children: cells
+          .map((cell) => Padding(
+                padding: const EdgeInsets.only(
+                    left: 12.0, right: 8.0, top: 8, bottom: 8),
+                child: Center(child: Text(cell)),
+              ))
+          .toList());
 }

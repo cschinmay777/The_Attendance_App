@@ -15,7 +15,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFFE6A6A6),
+      backgroundColor: Colors.lightBlueAccent,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -47,10 +47,10 @@ class _WelcomePageState extends State<WelcomePage> {
                     children: [
                       Align(
                         alignment: AlignmentDirectional(0, -0.25),
-                        child: Image.network(
-                          'https://www.inspirationde.com/media/2016/08/liveapexlogo-147223212348gnk.jpg',
-                          width: 150,
+                        child: Image(
+                          image: AssetImage('images/logo.jpg'),
                           height: 150,
+                          width: 150,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -62,12 +62,14 @@ class _WelcomePageState extends State<WelcomePage> {
                       //     fontWeight: FontWeight.bold,
                       //   ),
                       // ),
-                      Text(
-                        'The Attendance Book',
-                        style: TextStyle(
-                          fontFamily: 'Ropa Sans',
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
+                      Center(
+                        child: Text(
+                          'The Attendance Book',
+                          style: TextStyle(
+                            fontFamily: 'Ropa Sans',
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       Padding(

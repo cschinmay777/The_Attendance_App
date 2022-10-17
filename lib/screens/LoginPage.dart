@@ -6,7 +6,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:the_attendance_book_1/screens/ResetPasswordPage.dart';
 import 'package:the_attendance_book_1/screens/WelcomePage.dart';
+import 'package:the_attendance_book_1/screens/userdetails.dart';
 import 'package:the_attendance_book_1/widgets.dart';
+import 'package:switch_button/switch_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -37,6 +39,8 @@ class _LoginPageState extends State<LoginPage> {
     passwordVisibility = false;
   }
 
+  late int isteacher;
+  bool state = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,8 +74,9 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
-                          child: Image.network(
-                            'https://www.allgeo.com/newtemp/images/fieldservice/qr-code8.png',
+                          child: Image(
+                            image: AssetImage('images/login_page_image.png'),
+                            //'https://www.allgeo.com/newtemp/images/fieldservice/qr-code8.png',
                             width: 191,
                             height: 204,
                             fit: BoxFit.cover,
@@ -116,9 +121,10 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           style: const TextStyle(
                             fontFamily: 'Roboto',
-                            color: Color(0xff9E9E9E),
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
+                            //color: Color(0xff9E9E9E),
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
@@ -161,9 +167,10 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           style: const TextStyle(
                             fontFamily: 'Roboto',
-                            color: Color(0xFF9E9E9E),
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
+                            //color: Color(0xFF9E9E9E),
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
@@ -189,6 +196,53 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
+                      Container(
+                        width: 250,
+                        child: Center(
+                          child: SwitchButton(
+                            value: state,
+                            onToggle: (val) {
+                              setState(() {
+                                if (state == false) {
+                                  state = true;
+                                  (UserDetails.isteacher = 1);
+                                } else {
+                                  state = false;
+                                  (UserDetails.isteacher = 0);
+                                }
+                              });
+                            },
+                            child: Text(
+                              "Teacher login",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // TextButton(
+                      //   onPressed: () {
+                      //     setState(() {
+                      //       UserDetails.isteacher = 1;
+                      //     });
+                      //     // UserDetails.isteacher = 0;
+                      //     print(UserDetails.isteacher);
+                      //   },
+                      //   child: const Padding(
+                      //     //forgot password
+                      //     padding:
+                      //         EdgeInsetsDirectional.fromSTEB(150, 10, 0, 0),
+                      //     child: Text(
+                      //       'Teacher login',
+                      //       style: TextStyle(
+                      //         fontFamily: 'Roboto',
+                      //         color: Color(0xFF212121),
+                      //         fontSize: 15,
+                      //         fontWeight: FontWeight.bold,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                         child: ElevatedButton(
@@ -200,6 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 15),
                           ),
                           onPressed: () async {
+                            print(UserDetails.isteacher);
                             setState(() {
                               email = textController1.text;
                               password = textController2.text;
@@ -213,7 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
 
                               if (user != null) {
-                                Navigator.push(context,
+                                Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
                                   Fluttertoast.showToast(
                                       msg: "login Succesful",
@@ -224,7 +279,6 @@ class _LoginPageState extends State<LoginPage> {
                                       textColor: Colors.white,
                                       fontSize: 16.0);
                                   return HomePage();
-                                  ;
                                 }));
                               }
                             } on FirebaseAuthException catch (error) {
@@ -235,7 +289,7 @@ class _LoginPageState extends State<LoginPage> {
                                   timeInSecForIosWeb: 3,
                                   backgroundColor: Colors.black,
                                   textColor: Colors.white,
-                                  fontSize: 40.0);
+                                  fontSize: 16.0);
                             }
                           },
                           style: ButtonStyle(
